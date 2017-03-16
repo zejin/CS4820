@@ -132,14 +132,12 @@ public class FrameworkFlow
 			}   
 		}
 
-		int b;
-		int current;
 		boolean find;
-		Edge next;
-		ArrayList<Edge> path;
+		int b;
 		HashSet<Integer> visited;
 		LinkedList<Integer> queue;
-		HashMap<Integer, Edge> trace;
+		Edge[] trace;
+		ArrayList<Edge> path;
 		
 		// augment paths in the residual graph
 		while (true) {
@@ -150,20 +148,20 @@ public class FrameworkFlow
 			visited.add(s);
 			queue = new LinkedList<Integer>();
 			queue.add(s);
-			trace = new HashMap<Integer, Edge>();
+			trace = new Edge[n];
 			
 			while (queue.size() > 0) {
-				current = queue.remove();
-				if (current == t) {
+				k = queue.remove();
+				if (k == t) {
 					find = true;
 					break;
 				} else {
-					for (int i=0; i<residual[current].size(); i++) {
-						next = residual[current].get(i);
-						if (!visited.contains(next.headNode) && next.capacity > 0) {
-							visited.add(next.headNode);
-							queue.add(next.headNode);
-							trace.put(next.headNode, next);
+					for (int i=0; i<residual[k].size(); i++) {
+						e = residual[k].get(i);
+						if (!visited.contains(e.headNode) && e.capacity > 0) {
+							visited.add(e.headNode);
+							queue.add(e.headNode);
+							trace[e.headNode] = e;
 						}
 					}
 				}
@@ -172,11 +170,11 @@ public class FrameworkFlow
 			if (find) {
 				// recover the path
 				path = new ArrayList<Edge>();
-				current = t;
-				while (current != s) {
-					next = trace.get(current);
-					path.add(next);
-					current = next.tailNode;
+				k = t;
+				while (k != s) {
+					e = trace[k];
+					path.add(e);
+					k = e.tailNode;
 				}
 				
 				// find the bottleneck
