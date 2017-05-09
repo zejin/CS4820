@@ -71,7 +71,7 @@ public class FrameworkKnapsack
         }
     }
     
-    public Integer[] sortedIndices( double[] a )
+    public Integer[] sortedIndices( final double[] a )
     {
         Integer[] idx = new Integer[ n ];
         for ( int i = 0 ; i < a.length ; i++ )
@@ -88,7 +88,7 @@ public class FrameworkKnapsack
 	    return idx;
     }
     
-    public Integer[] sortedIndices( int[] a )
+    public Integer[] sortedIndices( final int[] a )
     {
         Integer[] idx = new Integer[ n ];
         for ( int i = 0 ; i < a.length ; i++ )
@@ -111,8 +111,7 @@ public class FrameworkKnapsack
         input(Args[ 1 ]);
 
 // YOUR CODE STARTS HERE
-        
-        // max value
+     // max value
         int vMax = v[0];
         for (int i=1; i<n; i++) {
         	if (v[i] > vMax) {
@@ -264,16 +263,6 @@ public class FrameworkKnapsack
         		j -= v[i-1];
         	}
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
 // YOUR CODE ENDS HERE
 
