@@ -99,7 +99,7 @@ public class FrameworkKnapsack
 			    @Override public int compare( final Integer i1, final Integer i2) 
 			    {
 			        return Integer.valueOf(a[i1]).compareTo(Integer.valueOf(a[i2]));
-				//Integer.compare( a[ i1 ], a[ i2 ] );
+				    //Integer.compare( a[ i1 ], a[ i2 ] );
 			    }
 		    }
 	    );
